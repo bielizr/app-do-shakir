@@ -8,11 +8,104 @@ import 'moment/locale/pt-br'
 import todayImage from '../../assets/imgs/today.jpg'
 import Task from "../components/Task"
 
-export default function TaskList(){
+export default function TaskList() {
 
     const tasks = [
         {
-
+            id: Math.random(),
+            desc: 'Elaborar o MER do TCC',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Ajustar o FIGMA',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        },
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        }, 
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        }, 
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
+        }, 
+        {
+            id: Math.random(),
+            desc: 'Desenvolver o Backend do sitema',
+            estimateAt: new Date(),
+            doneAt: new Date()
         }
     ]
 
@@ -20,13 +113,13 @@ export default function TaskList(){
     const today = moment().tz('America/Sao_Paulo').locale('pt-br').format('ddd, D [de] MMMM')
     // const today = moment().locale('pt-br').format('ddd, D [de] MMMM')
 
-    return(
+    return (
         <View style={styles.container}>
-            
+
             <ImageBackground source={todayImage} style={styles.background}>
                 <View style={styles.iconBar}>
                     <TouchableOpacity onPress={() => console.warn('oi')}>
-                        <Icon name="eye" size={20} color={'#fff'}/>
+                        <Icon name="eye" size={20} color={'#fff'} />
                     </TouchableOpacity>
                 </View>
 
@@ -37,14 +130,14 @@ export default function TaskList(){
             </ImageBackground>
 
             <View style={styles.taskList}>
-                <FlatList 
+                <FlatList
                     data={tasks}
                     keyExtractor={item => `${item.id}`}
-                    renderItem={({item}) => <Task {...item} />}
+                    renderItem={({ item }) => <Task {...item} />}
                 />
-                
+
             </View>
-            
+
             <TouchableOpacity
                 style={styles.addButton}
                 activeOpacity={0.7}
