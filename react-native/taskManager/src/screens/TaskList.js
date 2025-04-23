@@ -36,7 +36,7 @@ export default function TaskList() {
     const [tasks, setTasks] = useState([...taskDB])
     const [showDoneTask, setShowDoneTask] = useState(true)
     const [visibleTask, setVisibleTask] = useState([...tasks])
-    const [showAddTask, setShowAddTask] = useState(true)
+    const [showAddTask, setShowAddTask] = useState(false)
 
     const userTimeZone = moment.tz.guess(); // Detecta o fuso horario do dispositivo
     const today = moment().tz('America/Sao_Paulo').locale('pt-br').format('ddd, D [de] MMMM')
@@ -77,7 +77,8 @@ export default function TaskList() {
 
     return (
         <View style={styles.container}>
-            <AddTask isVisible={showAddTask} onCancel={() => setShowAddTask(false)}/>
+            <AddTask isVisible={showAddTask} 
+             onCancel={() => setShowAddTask(false)}/>
                 
             <ImageBackground source={todayImage} style={styles.background}>
                 <View style={styles.iconBar}>
