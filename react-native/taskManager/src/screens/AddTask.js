@@ -1,45 +1,78 @@
 import { useState } from "react";
-import { Modal, StyleSheet, View, TouchableWithoutFeedback, Text, TextInput, TouchableOpacity } 
-from "react-native";
+import { Modal, StyleSheet, View, TouchableWithoutFeedback, Text, TextInput, TouchableOpacity, Platform }
+    from "react-native";
 import commonStyles from "../commonStyles";
 
+import moment from "moment";
+import DateTimePickerAndroid from "@react-native-community/datetimepicker"
 
-export default function AddTask (props){
+
+export default function AddTask(props) {
 
     const [desc, setDesc] = useState("")
+    const [date, setDate] = useState(new Date())
 
+    const getDatePicker = () => {
+        let datePicker =
+            <DateTimePicker valeu={date}
+                onchange={(_, date) => {
+                    setDate(date)
+                    setShowDatePicker(false)
+                }}
+                mode='date'
 
-    return(
+            />
+
+        const dateString = moment(date).format('ddd, D [de] YYYY')
+
+        if (Platform.OS === 'android') {
+            datePicker = (
+                <View>
+                    <TouchableOpacity onPress={() => setShowDatePicker(true)}>
+                        <Text style={styles.date}>
+                            {dateString}
+                        </Text>
+                    </TouchableOpacity>
+                    {setShowDatePicker && datePicker}
+                </View>
+            )
+        }
+        return datePicker 
+    }
+
+    return (
         <Modal transparent={true}
-         visible={props.isVisible} 
-         onRequestClose={props.onCancel}
-         animationType="slide">
+            visible={props.isVisible}
+            onRequestClose={props.onCancel}
+            animationType="slide">
 
-            <TouchableWithoutFeedback 
-            onPress={props.onCancel }>
+            <TouchableWithoutFeedback
+                onPress={props.onCancel}>
 
                 <View style={styles.background}></View>
             </TouchableWithoutFeedback>
-            
+
             <View style={styles.container}>
-               <Text style={styles.header}>Nova Tarefa</Text>
-               <TextInput
-                   style={styles.input}
-                   placeholder="Informe a Descrição"
-                   onChangeText={setDesc}
-                   valeu={desc} />
-                   
-                   <View style={styles.buttons}> 
+                <Text style={styles.header}>Nova Tarefa</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Informe a Descrição"
+                    onChangeText={setDesc}
+                    valeu={desc} />
+
+                {this.getDatePicker()}
+
+                <View style={styles.buttons}>
                     <TouchableOpacity onPress={props.onCancel}>
                         <Text style={styles.button}>Cancelar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={props.save}>
                         <Text style={styles.button}>Salvar</Text>
                     </TouchableOpacity>
-                   </View>
+                </View>
             </View>
-            <TouchableWithoutFeedback 
-            onPress={props.onCancel }>
+            <TouchableWithoutFeedback
+                onPress={props.onCancel}>
 
                 <View style={styles.background}></View>
             </TouchableWithoutFeedback>
@@ -53,15 +86,15 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: 'rgba(0, 0, 0, 0.7)'
     },
-    container:{
+    container: {
         backgroundColor: '#fff',
         flex: 1
     },
     header: {
         backgroundColor: commonStyles.colors.today,
         color: commonStyles.colors.secondary,
-        textAlign:"center",
-        padding:15,
+        textAlign: "center",
+        padding: 15,
         fontSize: 18
     },
     input: {
@@ -76,8 +109,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "flex-end"
     },
-    button:{
-        margin:20,
+    button: {
+        margin: 20,
         marginRight: 30,
         color: commonStyles.colors.today
     }
